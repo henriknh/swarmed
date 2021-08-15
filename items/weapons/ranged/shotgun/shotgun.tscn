@@ -11,7 +11,7 @@ bullets_per_shot = 4
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 1, 0 )
 texture = ExtResource( 1 )
-hframes = 8
+hframes = 9
 frame = 1
 
 [node name="Mussle" type="Node2D" parent="Sprite"]

@@ -9,5 +9,5 @@ rotation = 0.349066
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 2.85814, 0.483115 )
 texture = ExtResource( 1 )
-hframes = 8
-frame = 7
+hframes = 9
+frame = 8
