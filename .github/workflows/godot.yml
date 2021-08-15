@@ -28,6 +28,7 @@ jobs:
           
   deploy-windows:
     name: Windows Deploy
+    needs: export-windows
     runs-on: ubuntu-latest
     container:
       image: barichello/godot-ci:3.3.2 
