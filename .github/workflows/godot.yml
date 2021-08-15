@@ -1,7 +1,12 @@
 # https://github.com/abarichello/godot-ci
 
 name: "godot-ci export"
-on: push
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch
+  push:
+    branches:
+      - release
 
 env:
   GODOT_VERSION: 3.3.2
