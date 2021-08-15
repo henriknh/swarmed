@@ -25,22 +25,8 @@ jobs:
         with:
           name: windows
           path: ./build/windows/
-          
-  deploy-windows:
-    name: Windows Deploy
-    needs: export-windows
-    runs-on: ubuntu-latest
-    container:
-      image: barichello/godot-ci:3.3.2 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: Deploy
-        run: |
-          ls -ls
-          cd ./build/windows/
-          ls -ls
-  
+      - name: Deploy Windows
+        run: butler push ./build/windows/$EXPORT_NAME.exe ${{ secrets.ITCHIO_USERNAME }}/${{ secrets.ITCHIO_GAME }}:windows
 
   export-linux:
     name: Linux Export
