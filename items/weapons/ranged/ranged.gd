@@ -25,12 +25,14 @@ func _physics_process(delta):
 		look_at(mouse_position)
 	
 		$Sprite.flip_v = mouse_position.x < global_position.x
+		position.x = -1 if mouse_position.x < global_position.x else 1
 		
 		rset("puppet_rotation", rotation)
 		rset("puppet_flip_v", $Sprite.flip_v)
 	else:
 		rotation = puppet_rotation
 		$Sprite.flip_v = puppet_flip_v
+		position.x = -1 if puppet_flip_v else 1
 		
 func shoot():
 	if not weapon_on_cooldown and bullets > 0:

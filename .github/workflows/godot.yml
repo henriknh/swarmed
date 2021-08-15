@@ -1,7 +1,10 @@
 # https://github.com/abarichello/godot-ci
 
 name: "godot-ci export"
-on: push
+on:
+  push:
+    branches:
+      - release
 
 env:
   GODOT_VERSION: 3.3.2
