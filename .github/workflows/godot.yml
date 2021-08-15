@@ -1,9 +1,15 @@
+# https://github.com/abarichello/godot-ci
+
 name: "godot-ci export"
-on: push
+on:
+  push:
+    branches:
+      - release
 
 env:
   GODOT_VERSION: 3.3.2
   EXPORT_NAME: swarmed
+  BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
 
 jobs:
   export-windows:
@@ -25,6 +31,8 @@ jobs:
         with:
           name: windows
           path: ./build/windows/
+      - name: Deploy Windows
+        run: butler push ./build/windows/$EXPORT_NAME.exe ${{ secrets.ITCHIO_USERNAME }}/${{ secrets.ITCHIO_GAME }}:windows
 
   export-linux:
     name: Linux Export
@@ -45,6 +53,8 @@ jobs:
         with:
           name: linux
           path: ./build/linux/
+      - name: Deploy Linux
+        run: butler push ./build/linux/$EXPORT_NAME.x86_64 ${{ secrets.ITCHIO_USERNAME }}/${{ secrets.ITCHIO_GAME }}:linux
           
 
   export-web:
@@ -96,3 +106,5 @@ jobs:
         with:
           name: mac
           path: ./build/mac/
+      - name: Deploy Mac
+        run: butler push ./build/mac/$EXPORT_NAME.zip ${{ secrets.ITCHIO_USERNAME }}/${{ secrets.ITCHIO_GAME }}:mac
