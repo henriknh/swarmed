@@ -30,7 +30,7 @@ jobs:
     name: Linux Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.2.3
+      image: barichello/godot-ci:3.3.2
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -51,7 +51,7 @@ jobs:
     name: Web Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.2.3
+      image: barichello/godot-ci:3.3.2
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -86,7 +86,7 @@ jobs:
     name: Mac Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.2.3
+      image: barichello/godot-ci:3.3.2
     steps:
       - name: Checkout
         uses: actions/checkout@v1
