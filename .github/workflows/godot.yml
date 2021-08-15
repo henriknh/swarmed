@@ -4,6 +4,7 @@ on: push
 env:
   GODOT_VERSION: 3.3.2
   EXPORT_NAME: swarmed
+  BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
 
 jobs:
   export-windows:
