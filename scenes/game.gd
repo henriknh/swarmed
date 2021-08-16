@@ -15,6 +15,9 @@ func _ready():
 	if not get_tree().is_network_server():
 		rpc_id(1, '_request_players', local_player_id)
 	
+	$CanvasModulate.visible = true
+	$CanvasLayer.offset = Vector2.ZERO
+	
 	Spawner.init()
 
 func on_player_disconnected(id):

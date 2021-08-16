@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/weapons.png" type="Texture" id=1]
-[ext_resource path="res://assets/light_mask_solid.png" type="Texture" id=2]
+[ext_resource path="res://assets/light_mask_16.png" type="Texture" id=2]
 [ext_resource path="res://items/weapons/ranged/projectiles/projectile.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2, 2 )
 
 [node name="Bullet" type="Node2D"]
-z_index = 2
+z_index = 1
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -17,7 +17,6 @@ hframes = 9
 frame = 5
 
 [node name="Light2D" type="Light2D" parent="."]
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 mode = 2
 

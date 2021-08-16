@@ -4,7 +4,7 @@
 [ext_resource path="res://entities/player/player.gd" type="Script" id=2]
 [ext_resource path="res://assets/guy.png" type="Texture" id=5]
 [ext_resource path="res://items/weapons/ranged/gun.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/light_mask_solid.png" type="Texture" id=7]
+[ext_resource path="res://assets/light_mask_64.png" type="Texture" id=7]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 2.0
@@ -111,13 +111,13 @@ radius = 50.0
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
 ]]
-z_index = 1
 collision_layer = 2
 collision_mask = 16
 script = ExtResource( 2 )
 max_health = 5
 max_energy = 2
 armor = 2
+roll_cost = 1
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 5 )
