@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/ui.png" type="Texture" id=1]
+[ext_resource path="res://gui/armor/armor.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 119, 112, 1, 6 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 123, 112, 4, 6 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 116, 107, 1, 4 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 118, 107, 1, 4 )
+
+[node name="Armor" type="Control"]
+margin_left = 32.0
+margin_right = 32.0
+margin_bottom = 6.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="HBoxContainer" parent="."]
+margin_right = 5.0
+margin_bottom = 6.0
+size_flags_vertical = 0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Center" type="TextureRect" parent="Container"]
+margin_right = 1.0
+margin_bottom = 6.0
+size_flags_horizontal = 3
+texture = SubResource( 1 )
+expand = true
+stretch_mode = 2
+
+[node name="Right" type="TextureRect" parent="Container"]
+margin_left = 1.0
+margin_right = 5.0
+margin_bottom = 6.0
+texture = SubResource( 2 )
+
+[node name="Value" type="HBoxContainer" parent="."]
+show_behind_parent = true
+margin_top = 1.0
+margin_right = 4.0
+margin_bottom = 5.0
+size_flags_vertical = 0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="TextureRect" parent="Value"]
+margin_right = 1.0
+margin_bottom = 4.0
+texture = SubResource( 3 )
+
+[node name="Right" type="TextureRect" parent="Value"]
+margin_left = 1.0
+margin_right = 4.0
+margin_bottom = 4.0
+size_flags_horizontal = 3
+texture = SubResource( 4 )
+expand = true

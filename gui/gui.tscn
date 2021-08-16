@@ -1,0 +1,117 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://gui/gui.gd" type="Script" id=1]
+[ext_resource path="res://gui/armor/armor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://gui/energy/energy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://gui/health/health.tscn" type="PackedScene" id=4]
+[ext_resource path="res://gui/ammo/ammo.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/ui.png" type="Texture" id=6]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 6 )
+region = Rect2( 167, 95, 10, 10 )
+
+[node name="GUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopLeft" type="MarginContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 4, 4 )
+custom_constants/margin_right = 0
+custom_constants/margin_top = 0
+custom_constants/margin_left = 0
+custom_constants/margin_bottom = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TopLeft"]
+margin_right = 40.0
+margin_bottom = 40.0
+custom_constants/separation = -1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopLeft/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 6.0
+rect_min_size = Vector2( 0, 6 )
+custom_constants/separation = 0
+
+[node name="Health" parent="TopLeft/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+margin_right = 40.0
+
+[node name="Armor" parent="TopLeft/VBoxContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 40.0
+margin_right = 40.0
+
+[node name="Energy" parent="TopLeft/VBoxContainer" instance=ExtResource( 3 )]
+margin_right = 40.0
+
+[node name="BottomRight" type="Control" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_scale = Vector2( 4, 4 )
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomRight"]
+grow_horizontal = 0
+grow_vertical = 0
+custom_constants/margin_right = 2
+custom_constants/margin_top = 2
+custom_constants/margin_left = 2
+custom_constants/margin_bottom = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomRight/MarginContainer"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 36.0
+margin_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_constants/separation = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomRight/MarginContainer/HBoxContainer"]
+margin_right = 22.0
+margin_bottom = 10.0
+alignment = 2
+
+[node name="Ammo" parent="BottomRight/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 5 )]
+margin_top = 5.0
+margin_right = 22.0
+margin_bottom = 10.0
+
+[node name="Control" type="Control" parent="BottomRight/MarginContainer/HBoxContainer"]
+margin_left = 24.0
+margin_right = 34.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 10, 10 )
+
+[node name="Item" type="CenterContainer" parent="BottomRight/MarginContainer/HBoxContainer/Control"]
+margin_left = -4.0
+margin_right = -4.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackgroundItem" type="TextureRect" parent="BottomRight/MarginContainer/HBoxContainer/Control"]
+margin_right = 10.0
+margin_bottom = 10.0
+texture = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
