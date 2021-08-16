@@ -1,20 +1,21 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/weapons.png" type="Texture" id=1]
 [ext_resource path="res://items/weapons/ranged/ranged.gd" type="Script" id=2]
+[ext_resource path="res://items/weapons/ranged/projectiles/bullet.tscn" type="PackedScene" id=3]
 
-[node name="Uzi" type="Node2D"]
+[node name="Gun" type="Node2D"]
 position = Vector2( 1, 1 )
 script = ExtResource( 2 )
-cooldown_time = 0.05
-max_bullets = 30
-automatic_fire = true
+cooldown_time = 0.2
+projectile_instance = ExtResource( 3 )
+projectile_spread = 8
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 1, 0 )
 texture = ExtResource( 1 )
 hframes = 9
-frame = 2
+frame = 3
 
 [node name="Mussle" type="Node2D" parent="Sprite"]
-position = Vector2( 2.37841, -0.520278 )
+position = Vector2( 2, -0.5 )

@@ -2,12 +2,11 @@ extends Weapon
 
 class_name Ranged
 
-var bullet_instance = preload("res://items/weapons/ranged/bullet/bullet.tscn")
-
+export(PackedScene) var projectile_instance
 export(int) var max_bullets = 8
 export(int) var bullets_per_shot = 1
 export(bool) var automatic_fire = false
-export(int) var bullet_spread = 10
+export(int) var projectile_spread = 10
 
 onready var bullets = max_bullets
 var shooting = false
@@ -43,16 +42,13 @@ func shoot():
 
 sync func create_bullet(position: Vector2, rotation: float):
 	for i in range(bullets_per_shot):
+		var projectile = projectile_instance.instance()
 		
+		projectile.projectile_spread = projectile_spread
+		projectile.global_position = position
+		projectile.global_rotation = rotation
 		
-		var bullet = bullet_instance.instance()
-		
-		bullet.bullet_spread = bullet_spread
-		bullet.global_position = position
-		bullet.global_rotation = rotation
-		
-		(self as Node2D).get_node("/root/Game").call_deferred("add_child", bullet)
-		#.add_child(bullet)
+		(self as Node2D).get_node("/root/Game").call_deferred("add_child", projectile)
 
 func reload():
 	bullets = max_bullets

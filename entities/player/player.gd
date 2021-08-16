@@ -3,9 +3,6 @@ extends Unit
 export (int) var speed = 40
 export (int) var roll_speed = 80
 
-export (int) var max_energy = 3
-onready var energy = max_energy setget set_energy
-
 var velocity = Vector2.ZERO
 
 export(int) var roll_cost = 2
@@ -24,6 +21,8 @@ func _ready():
 		$RemoteTransform2D.remote_path = get_node("/root/Game/Camera2D").get_path()
 		
 	item = $Weapon.get_child(0)
+	
+	._onready()
 	
 func get_inputs():
 	
@@ -85,16 +84,6 @@ func do_roll():
 
 func roll_complete():
 	is_rolling = false
-	
-func set_energy(_energy: int):
-	energy = _energy
-	if energy < max_energy and $RechargeEnergy.is_stopped():
-		$RechargeEnergy.start()
-
-func on_recharge_energy():
-	self.energy += 1
-	if energy >= max_energy:
-		self.energy = max_energy
 
 func _on_body_entered(body):
 	if body is Enemy and body.has_method("on_alert"):

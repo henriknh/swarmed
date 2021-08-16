@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://gui/ammo/ammo.gd" type="Script" id=1]
+[ext_resource path="res://gui/ammo/bullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://gui/ammo/empty_bullet.tscn" type="PackedScene" id=3]
+
+[node name="Ammo" type="HBoxContainer"]
+grow_horizontal = 0
+grow_vertical = 0
+custom_constants/separation = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EmptyBullet2" parent="." instance=ExtResource( 3 )]
+margin_bottom = 5.0
+
+[node name="EmptyBullet" parent="." instance=ExtResource( 3 )]
+margin_left = 6.0
+margin_right = 10.0
+margin_bottom = 5.0
+
+[node name="Bullet" parent="." instance=ExtResource( 2 )]
+margin_left = 12.0
+margin_right = 16.0
+margin_bottom = 5.0
+
+[node name="Bullet2" parent="." instance=ExtResource( 2 )]
+margin_left = 18.0
+margin_right = 22.0
+margin_bottom = 5.0
