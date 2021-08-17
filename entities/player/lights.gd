@@ -12,8 +12,6 @@ func _ready():
 	scale = Vector2.ONE  * get_vision_radius()
 
 func _physics_process(delta):
-	get_parent().health = 1
-	
 	scale = Vector2.ONE  * lerp(scale.x, get_vision_radius(delta), delta * (2  + 3 * get_heart_rate()))
 	
 func get_heart_rate() -> float:
