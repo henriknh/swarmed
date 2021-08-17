@@ -2,9 +2,9 @@
 
 [ext_resource path="res://entities/player/lights.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/player.gd" type="Script" id=2]
+[ext_resource path="res://assets/light_mask_96.png" type="Texture" id=3]
 [ext_resource path="res://assets/guy.png" type="Texture" id=5]
 [ext_resource path="res://items/weapons/ranged/gun.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/light_mask_64.png" type="Texture" id=7]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 2.0
@@ -154,7 +154,7 @@ shape = SubResource( 15 )
 
 [node name="Light2D" type="Light2D" parent="."]
 scale = Vector2( 2, 2 )
-texture = ExtResource( 7 )
+texture = ExtResource( 3 )
 mode = 2
 shadow_enabled = true
 script = ExtResource( 1 )

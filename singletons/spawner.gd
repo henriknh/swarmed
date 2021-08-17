@@ -42,7 +42,6 @@ func create_goo():
 	var new_goo = preload("res://entities/enemies/goo/goo.tscn").instance()
 	new_goo.name = "%d_%d" % [get_tree().get_network_unique_id(), i]
 	new_goo.position = get_valid_position()
-	print(new_goo.position)
 	new_goo.set_network_master(get_tree().get_network_unique_id())
 	get_node("/root/Game").add_child(new_goo)
 	
