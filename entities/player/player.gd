@@ -17,12 +17,12 @@ puppet var puppet_facing = 0
 var item: Item = null
 	
 func _ready():
+	._onready()
 	if is_network_master():
 		$RemoteTransform2D.remote_path = get_node("/root/Game/Camera2D").get_path()
 		
 	item = $Weapon.get_child(0)
 	
-	._onready()
 	
 func get_inputs():
 	
