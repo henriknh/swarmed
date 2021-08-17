@@ -16,7 +16,7 @@ var i = 0
 func init():
 	floors = get_node("/root/Game/Navigation2D/Floor")
 	walls = get_node("/root/Game/Navigation2D/Walls")
-	props = get_node("/root/Game/Navigation2D/Props")
+	props = get_node("/root/Game/Navigation2D/Walls/Props")
 	
 	floors_cells = floors.get_used_cells()
 	floors_cells.shuffle()
@@ -43,7 +43,7 @@ func create_goo():
 	new_goo.name = "%d_%d" % [get_tree().get_network_unique_id(), i]
 	new_goo.position = get_valid_position()
 	new_goo.set_network_master(get_tree().get_network_unique_id())
-	get_node("/root/Game").add_child(new_goo)
+	get_node("/root/Game/Navigation2D/Walls/Props").add_child(new_goo)
 	
 
 func get_valid_position():
