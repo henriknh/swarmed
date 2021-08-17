@@ -22,7 +22,7 @@ __meta__ = {
 [node name="TopLeft" type="MarginContainer" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
-rect_scale = Vector2( 4, 4 )
+rect_scale = Vector2( 10, 10 )
 custom_constants/margin_right = 0
 custom_constants/margin_top = 0
 custom_constants/margin_left = 0
@@ -52,6 +52,20 @@ margin_right = 40.0
 [node name="Energy" parent="TopLeft/VBoxContainer" instance=ExtResource( 3 )]
 margin_right = 40.0
 
+[node name="TopRight" type="Control" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+rect_scale = Vector2( 5, 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FpsCounter" type="Label" parent="TopRight"]
+margin_bottom = 14.0
+grow_horizontal = 0
+text = "1"
+align = 2
+
 [node name="BottomRight" type="Control" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
@@ -59,7 +73,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 0
-rect_scale = Vector2( 4, 4 )
+rect_scale = Vector2( 10, 10 )
 
 [node name="MarginContainer" type="MarginContainer" parent="BottomRight"]
 grow_horizontal = 0

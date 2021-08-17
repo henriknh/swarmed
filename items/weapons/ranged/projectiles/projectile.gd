@@ -11,6 +11,6 @@ func _physics_process(delta):
 	translate(Vector2(1, 0).rotated(rotation) * speed * delta)
 
 func on_collide(body):
-	if body is Entity:
+	if not is_queued_for_deletion() and body is Entity:
 		body.health -= 1
 	queue_free()

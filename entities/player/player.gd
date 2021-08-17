@@ -59,8 +59,8 @@ func _physics_process(delta):
 			
 			$Sprite.flip_h = facing < 0
 			
-			camera.offset_h = lerp(camera.offset_h, facing * 0.4, delta * 20)
-			camera.offset_v = lerp(camera.offset_v, mouse_location.y * 0.2, delta * 20)
+			camera.offset_h = lerp(camera.offset_h, mouse_location.x * 0.2, delta * 20)
+			camera.offset_v = lerp(camera.offset_v, mouse_location.y * 0.1, delta * 20)
 			
 			rset("puppet_facing", facing)
 			
