@@ -6,7 +6,7 @@ export(int) var target_lost_distance = 150
 export(int) var speed = 25
 
 onready var nav: Navigation2D = get_node("/root/Game/Navigation2D")
-var on_target_reset = Vector2.ZERO
+onready var on_target_reset = position
 var target: KinematicBody2D = null
 var velocity = Vector2.ZERO
 

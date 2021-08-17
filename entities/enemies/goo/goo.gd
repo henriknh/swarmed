@@ -2,6 +2,10 @@ extends Enemy
 
 var enemies = []
 
+func _ready():
+	._ready()
+	$Line2D.visible = OS.is_debug_build()
+	
 func on_attack(body):
 	for enemy in enemies:
 		enemy.health -= 1
