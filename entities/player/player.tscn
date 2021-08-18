@@ -106,7 +106,7 @@ start_node = "idle"
 [sub_resource type="AnimationNodeStateMachinePlayback" id=14]
 
 [sub_resource type="CircleShape2D" id=15]
-radius = 250.0
+radius = 50.0
 
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
@@ -145,7 +145,6 @@ parameters/playback = SubResource( 14 )
 [node name="Gun" parent="Weapon" instance=ExtResource( 6 )]
 
 [node name="Noise" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 4
 

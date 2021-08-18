@@ -11,7 +11,6 @@ var target: KinematicBody2D = null
 var velocity = Vector2.ZERO
 
 func _physics_process(delta):
-	
 	if is_instance_valid(target):
 		if not move_to(target.global_position):
 			clear_target()
@@ -21,7 +20,7 @@ func _physics_process(delta):
 			move_to(on_target_reset)
 
 func move_to(target_postition: Vector2) -> bool:
-	var path_to_target = nav.get_simple_path(global_position, target_postition, false)
+	var path_to_target = nav.get_simple_path(global_position, target_postition)
 	
 	if path_to_target.size():
 		
@@ -55,6 +54,7 @@ func clear_target():
 	$Line2D.points = []
 
 func on_alert(source: KinematicBody2D):
+	print(source)
 	target = source
 	on_target_reset = global_position
 	set_physics_process(true)

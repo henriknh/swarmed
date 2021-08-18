@@ -42,4 +42,4 @@ func create_player(player_id: int):
 	var new_player = player_instance.instance()
 	new_player.name = str(player_id)
 	new_player.set_network_master(player_id)
-	$Navigation2D/Walls/Props.add_child(new_player)
+	$Walls/Props.add_child(new_player)
