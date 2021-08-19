@@ -29,9 +29,7 @@ func on_server_disconnected():
 remote func _request_players(request_from_id):
 	if get_tree().is_network_server():
 		for player in get_tree().get_nodes_in_group("Player"):
-			print("%d %d" % [int(player.name), request_from_id])
 			if int(player.name) != request_from_id:
-				print("sending ")
 				rpc_id(request_from_id, '_send_player', int(player.name))
 				
 remote func _send_player(player_id: int):

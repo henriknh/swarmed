@@ -39,12 +39,9 @@ func set_energy(_energy: int):
 	
 	if energy > max_energy:
 		energy = max_energy
-	print(energy)
 	
 	if energy < max_energy and recharge_energy_timer.is_stopped():
-		print('start time')
 		recharge_energy_timer.start()
 
 func on_recharge_energy():
-	print("on_recharge_energy")
 	set_energy(energy + 1)

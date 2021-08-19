@@ -42,6 +42,9 @@ func shoot():
 
 sync func create_bullet(position: Vector2, rotation: float):
 	for i in range(bullets_per_shot):
+		
+		get_node("Sprite/Mussle").add_child(preload("res://items/weapons/ranged/mussle_flash.tscn").instance())
+		
 		var projectile = projectile_instance.instance()
 		
 		projectile.projectile_spread = projectile_spread

@@ -20,8 +20,6 @@ func init():
 	walls = get_node("/root/Game/Walls")
 	props = get_node("/root/Game/Walls/Props")
 	
-	print(walkable.get_used_cells()[0])
-	
 	walkable_cells = walkable.get_used_cells()
 	walkable_cells.shuffle()
 	
@@ -47,10 +45,8 @@ func create_goo():
 	new_goo.position = get_valid_position()
 	new_goo.set_network_master(get_tree().get_network_unique_id())
 	get_node("/root/Game/Walls/Props").add_child(new_goo)
-	
 
 func get_valid_position():
-	
 	var position = Vector2.ZERO
 	var is_valid = false
 

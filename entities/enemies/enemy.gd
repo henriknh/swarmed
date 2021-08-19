@@ -54,7 +54,6 @@ func clear_target():
 	$Line2D.points = []
 
 func on_alert(source: KinematicBody2D):
-	print(source)
 	target = source
 	on_target_reset = global_position
 	set_physics_process(true)

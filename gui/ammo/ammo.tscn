@@ -14,9 +14,11 @@ __meta__ = {
 }
 
 [node name="EmptyBullet2" parent="." instance=ExtResource( 3 )]
+modulate = Color( 1, 1, 1, 0.196078 )
 margin_bottom = 5.0
 
 [node name="EmptyBullet" parent="." instance=ExtResource( 3 )]
+modulate = Color( 1, 1, 1, 0.196078 )
 margin_left = 6.0
 margin_right = 10.0
 margin_bottom = 5.0
