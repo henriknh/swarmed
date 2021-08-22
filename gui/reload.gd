@@ -29,9 +29,12 @@ func _process(delta):
 	rect_position = get_viewport().get_mouse_position() / 4
 	var progress = 1 - (item.reload_timer.time_left / item.reload_time)
 	
-	var can_quick_reload = item.in_quick_reload_interval()
-	$VBoxContainer/Control/Control/Normal.visible = not can_quick_reload
-	$VBoxContainer/Control/Control/QuickReload.visible = can_quick_reload
+	$VBoxContainer/Control/ReloadBar.visible = item.can_quick_reload
+	$VBoxContainer/Control/ReloadBarNoQuickReload.visible = not item.can_quick_reload
+
+	var in_quick_reload_interval = item.in_quick_reload_interval()
+	$VBoxContainer/Control/Control/Normal.visible = not in_quick_reload_interval
+	$VBoxContainer/Control/Control/QuickReload.visible = in_quick_reload_interval
 	
 	$VBoxContainer/Control/Control.rect_position.x = progress * 26
 

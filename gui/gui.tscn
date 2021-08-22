@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://gui/gui.gd" type="Script" id=1]
 [ext_resource path="res://gui/armor/armor.tscn" type="PackedScene" id=2]
@@ -21,6 +21,10 @@ region = Rect2( 176, 80, 16, 16 )
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 6 )
 region = Rect2( 196, 109, 30, 4 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 6 )
+region = Rect2( 196, 114, 30, 4 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 6 )
@@ -328,6 +332,14 @@ margin_bottom = 28.0
 margin_right = 30.0
 margin_bottom = 4.0
 texture = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReloadBarNoQuickReload" type="TextureRect" parent="Reload/VBoxContainer/Control"]
+margin_right = 30.0
+margin_bottom = 4.0
+texture = SubResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
