@@ -10,8 +10,7 @@ puppet var puppet_anim
 func _ready():
 	puppet_anim = anim_player.get_current_node()
 	
-	if get_node_or_null("Sprite"):
-		get_node("Sprite").material = preload("res://materials/canvas_light_only.tres")
+	call_deferred("add_child", preload("res://entities/siluette.tscn").instance())
 
 func set_anim(anim: String):
 	if anim != anim_player.get_current_node():

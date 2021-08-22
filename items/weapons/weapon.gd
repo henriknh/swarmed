@@ -13,8 +13,9 @@ func _ready():
 	weapon_cooldown_timer.connect("timeout", self, "on_cooldown_done")
 	add_child(weapon_cooldown_timer)
 	
-	if get_node_or_null("Sprite"):
-		get_node("Sprite").material = preload("res://materials/canvas_light_only.tres")
+	call_deferred("add_child", preload("res://entities/siluette.tscn").instance())
+	
+	._ready()
 
 func run_cooldown():
 	weapon_cooldown_timer.start()

@@ -13,17 +13,14 @@ puppet var puppet_is_rolling = is_rolling
 
 onready var camera: Camera2D = get_node("/root/Game/Camera2D")
 onready var window_size = Vector2(ProjectSettings.get("display/window/size/width"), ProjectSettings.get("display/window/size/height"))
+onready var sprite: Sprite = $Viewport/Sprite
 
 puppet var puppet_facing = 0
-
-var item: Item = null
 	
 func _ready():
 	._onready()
 	if is_network_master():
 		$RemoteTransform2D.remote_path = get_node("/root/Game/Camera2D").get_path()
-		
-	item = $Weapon.get_child(0)
 	
 func get_inputs() -> Vector2:
 	
@@ -46,7 +43,7 @@ func _physics_process(delta):
 		var mouse_location = relative_mouse_position / window_size_offsetted
 		
 		var facing = mouse_location.x
-		$Sprite.flip_h = facing < 0
+		sprite.flip_h = facing < 0
 		rset("puppet_facing", facing)
 		
 		camera.offset_h = lerp(camera.offset_h, mouse_location.x * 0.2, delta * 20)
@@ -80,7 +77,7 @@ func _physics_process(delta):
 	else:
 		collision_layer = 0 if is_rolling else 2
 		position = puppet_position
-		$Sprite.flip_h = puppet_facing < 0
+		sprite.flip_h = puppet_facing < 0
 		set_anim(puppet_anim)
 
 func roll_complete():
@@ -96,3 +93,4 @@ func play_step():
 	if $Steps.playing:
 		$Steps.stop()
 	$Steps.play()
+

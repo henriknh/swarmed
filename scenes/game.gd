@@ -4,7 +4,6 @@ export(PackedScene) var player_instance
 export(PackedScene) var goo_instance
 
 func _ready():
-	
 	get_tree().connect("network_peer_disconnected", self, "on_player_disconnected")
 	get_tree().connect('network_peer_connected', self, "create_player")
 	get_tree().connect("server_disconnected", self, "on_server_disconnected")
@@ -40,4 +39,4 @@ func create_player(player_id: int):
 	var new_player = player_instance.instance()
 	new_player.name = str(player_id)
 	new_player.set_network_master(player_id)
-	$Walls/Props.add_child(new_player)
+	$YSort/Walls/Props.add_child(new_player)

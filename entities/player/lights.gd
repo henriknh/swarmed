@@ -6,7 +6,7 @@ export(int) var speed_factor = 13
 onready var time = Random.randf()
 
 func _ready():
-	visible = int(get_parent().name) == get_tree().get_network_unique_id()
+	#visible = int(get_parent().name) == get_tree().get_network_unique_id()
 	set_physics_process(visible)
 	
 	scale = Vector2.ONE  * get_vision_radius()

@@ -1,19 +1,39 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://gui/gui.gd" type="Script" id=1]
 [ext_resource path="res://gui/armor/armor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://gui/energy/energy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://gui/health/health.tscn" type="PackedScene" id=4]
 [ext_resource path="res://gui/ammo/ammo.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/ui.png" type="Texture" id=6]
+[ext_resource path="res://assets/spritesheets/ui.png" type="Texture" id=6]
+[ext_resource path="res://gui/Items.gd" type="Script" id=7]
+[ext_resource path="res://gui/mouse_cursor/mouse_cursor.gd" type="Script" id=8]
+[ext_resource path="res://gui/reload.gd" type="Script" id=9]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 6 )
-region = Rect2( 167, 95, 10, 10 )
+region = Rect2( 176, 80, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 6 )
+region = Rect2( 176, 80, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 6 )
+region = Rect2( 196, 109, 30, 4 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 6 )
+region = Rect2( 229, 108, 4, 6 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 6 )
+region = Rect2( 234, 108, 4, 6 )
 
 [node name="GUI" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_right = 0.25
+anchor_bottom = 0.25
+rect_scale = Vector2( 4, 4 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -22,7 +42,6 @@ __meta__ = {
 [node name="TopLeft" type="MarginContainer" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
-rect_scale = Vector2( 10, 10 )
 custom_constants/margin_right = 0
 custom_constants/margin_top = 0
 custom_constants/margin_left = 0
@@ -55,7 +74,6 @@ margin_right = 40.0
 [node name="TopRight" type="Control" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-rect_scale = Vector2( 5, 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -73,7 +91,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 0
-rect_scale = Vector2( 10, 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="MarginContainer" type="MarginContainer" parent="BottomRight"]
 grow_horizontal = 0
@@ -86,46 +106,247 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomRight/MarginContainer"]
+[node name="Ammo" parent="BottomRight/MarginContainer" instance=ExtResource( 5 )]
 margin_left = 2.0
 margin_top = 2.0
-margin_right = 36.0
-margin_bottom = 12.0
-grow_horizontal = 0
-grow_vertical = 0
-custom_constants/separation = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="BottomRight/MarginContainer/HBoxContainer"]
-margin_right = 22.0
-margin_bottom = 10.0
+margin_right = 12.0
+margin_bottom = 6.0
 alignment = 2
 
-[node name="Ammo" parent="BottomRight/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 5 )]
-margin_top = 5.0
-margin_right = 22.0
-margin_bottom = 10.0
+[node name="Control" type="Control" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 
-[node name="Control" type="Control" parent="BottomRight/MarginContainer/HBoxContainer"]
-margin_left = 24.0
-margin_right = 34.0
-margin_bottom = 10.0
-rect_min_size = Vector2( 10, 10 )
-
-[node name="Item" type="CenterContainer" parent="BottomRight/MarginContainer/HBoxContainer/Control"]
-margin_left = -4.0
-margin_right = -4.0
-margin_bottom = 14.0
+[node name="MarginContiner" type="MarginContainer" parent="Control"]
+anchor_right = 1.0
+grow_vertical = 0
+custom_constants/margin_right = 2
+custom_constants/margin_top = 2
+custom_constants/margin_left = 2
+custom_constants/margin_bottom = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BackgroundItem" type="TextureRect" parent="BottomRight/MarginContainer/HBoxContainer/Control"]
-margin_right = 10.0
-margin_bottom = 10.0
+[node name="Items" type="HBoxContainer" parent="Control/MarginContiner"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 318.0
+margin_bottom = 18.0
+grow_vertical = 0
+alignment = 1
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Item1" type="VBoxContainer" parent="Control/MarginContiner/Items"]
+margin_left = 120.0
+margin_right = 136.0
+margin_bottom = 16.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon" type="CenterContainer" parent="Control/MarginContiner/Items/Item1"]
+margin_right = 16.0
+margin_bottom = 16.0
+
+[node name="Background" type="TextureRect" parent="Control/MarginContiner/Items/Item1/Icon"]
+margin_right = 16.0
+margin_bottom = 16.0
 texture = SubResource( 1 )
+
+[node name="Icon" type="TextureRect" parent="Control/MarginContiner/Items/Item1/Icon"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 8.0
+margin_bottom = 8.0
+
+[node name="Cooldown" type="TextureProgress" parent="Control/MarginContiner/Items/Item1/Icon"]
+margin_right = 16.0
+margin_bottom = 16.0
+value = 33.0
+texture_progress = SubResource( 2 )
+fill_mode = 3
+tint_progress = Color( 0, 0, 0, 0.392157 )
+nine_patch_stretch = true
+stretch_margin_left = 8
+stretch_margin_top = 8
+stretch_margin_right = 8
+stretch_margin_bottom = 8
+
+[node name="Item2" type="VBoxContainer" parent="Control/MarginContiner/Items"]
+margin_left = 140.0
+margin_right = 156.0
+margin_bottom = 16.0
+custom_constants/separation = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Icon" type="CenterContainer" parent="Control/MarginContiner/Items/Item2"]
+margin_right = 16.0
+margin_bottom = 16.0
+
+[node name="Background" type="TextureRect" parent="Control/MarginContiner/Items/Item2/Icon"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = SubResource( 1 )
+
+[node name="Icon" type="TextureRect" parent="Control/MarginContiner/Items/Item2/Icon"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = SubResource( 1 )
+
+[node name="Cooldown" type="TextureProgress" parent="Control/MarginContiner/Items/Item2/Icon"]
+margin_right = 16.0
+margin_bottom = 16.0
+value = 33.0
+texture_progress = SubResource( 2 )
+fill_mode = 3
+tint_progress = Color( 0, 0, 0, 0.392157 )
+nine_patch_stretch = true
+stretch_margin_left = 8
+stretch_margin_top = 8
+stretch_margin_right = 8
+stretch_margin_bottom = 8
+
+[node name="Item3" type="VBoxContainer" parent="Control/MarginContiner/Items"]
+margin_left = 160.0
+margin_right = 176.0
+margin_bottom = 16.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon" type="CenterContainer" parent="Control/MarginContiner/Items/Item3"]
+margin_right = 16.0
+margin_bottom = 16.0
+
+[node name="Background" type="TextureRect" parent="Control/MarginContiner/Items/Item3/Icon"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = SubResource( 1 )
+
+[node name="Icon" type="TextureRect" parent="Control/MarginContiner/Items/Item3/Icon"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = SubResource( 1 )
+
+[node name="Cooldown" type="TextureProgress" parent="Control/MarginContiner/Items/Item3/Icon"]
+margin_right = 16.0
+margin_bottom = 16.0
+value = 33.0
+texture_progress = SubResource( 2 )
+fill_mode = 3
+tint_progress = Color( 0, 0, 0, 0.392157 )
+nine_patch_stretch = true
+stretch_margin_left = 8
+stretch_margin_top = 8
+stretch_margin_right = 8
+stretch_margin_bottom = 8
+
+[node name="Item4" type="VBoxContainer" parent="Control/MarginContiner/Items"]
+margin_left = 180.0
+margin_right = 196.0
+margin_bottom = 16.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon" type="CenterContainer" parent="Control/MarginContiner/Items/Item4"]
+margin_right = 16.0
+margin_bottom = 16.0
+
+[node name="Background" type="TextureRect" parent="Control/MarginContiner/Items/Item4/Icon"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = SubResource( 1 )
+
+[node name="Icon" type="TextureRect" parent="Control/MarginContiner/Items/Item4/Icon"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = SubResource( 1 )
+
+[node name="Cooldown" type="TextureProgress" parent="Control/MarginContiner/Items/Item4/Icon"]
+margin_right = 16.0
+margin_bottom = 16.0
+value = 33.0
+texture_progress = SubResource( 2 )
+fill_mode = 3
+tint_progress = Color( 0, 0, 0, 0.392157 )
+nine_patch_stretch = true
+stretch_margin_left = 8
+stretch_margin_top = 8
+stretch_margin_right = 8
+stretch_margin_bottom = 8
+
+[node name="MouseCursor" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Reload" type="Control" parent="."]
+margin_left = 115.614
+margin_top = 52.1945
+margin_right = 115.614
+margin_bottom = 52.1945
+rect_scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Reload"]
+margin_left = -15.0
+margin_top = -12.0
+margin_right = 15.0
+margin_bottom = 16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MouseCursor" type="TextureRect" parent="Reload/VBoxContainer"]
+margin_right = 30.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="Control" type="Control" parent="Reload/VBoxContainer"]
+margin_top = 28.0
+margin_right = 30.0
+margin_bottom = 28.0
+
+[node name="ReloadBar" type="TextureRect" parent="Reload/VBoxContainer/Control"]
+margin_right = 30.0
+margin_bottom = 4.0
+texture = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="Reload/VBoxContainer/Control"]
+margin_left = 26.0
+margin_top = -1.0
+margin_right = 26.0
+margin_bottom = -1.0
+
+[node name="Normal" type="TextureRect" parent="Reload/VBoxContainer/Control/Control"]
+margin_right = 4.0
+margin_bottom = 6.0
+texture = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuickReload" type="TextureRect" parent="Reload/VBoxContainer/Control/Control"]
+margin_right = 4.0
+margin_bottom = 6.0
+texture = SubResource( 5 )

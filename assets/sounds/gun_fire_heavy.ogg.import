@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/gun_fire_heavy.ogg-db3804693872eed24b945490cecd32ed.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/gun_fire_heavy.ogg"
+dest_files=[ "res://.import/gun_fire_heavy.ogg-db3804693872eed24b945490cecd32ed.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
