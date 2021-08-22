@@ -20,7 +20,7 @@ func init():
 	spawn_timer.autostart = true
 	spawn_timer.wait_time = Random.randf() * 2 + 1
 	spawn_timer.connect("timeout", self, "on_create_goo")
-	#get_node("/root/Game").add_child(spawn_timer)
+	get_node("/root/Game").add_child(spawn_timer)
 
 func on_create_goo():
 	spawn_timer.stop()

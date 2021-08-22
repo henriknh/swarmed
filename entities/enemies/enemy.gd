@@ -15,7 +15,6 @@ func _ready():
 	clear_target()
 
 func _physics_process(delta):
-	return
 	if is_instance_valid(target):
 		if not move_to(target.global_position):
 			clear_target()
