@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/sounds/gun_fire.ogg" type="AudioStream" id=1]
+[ext_resource path="res://items/weapons/ranged/mussle_flash.gd" type="Script" id=3]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0.538636 ), 0.0, 0.571007, 0, 0, Vector2( 1, 1 ), 0.142627, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+flag_disable_z = true
+spread = 20.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 20.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 50.0
+scale_random = 0.2
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[node name="MussleFlash" type="Particles2D"]
+emitting = false
+amount = 4
+lifetime = 0.2
+one_shot = true
+explosiveness = 0.5
+randomness = 0.33
+process_material = SubResource( 5 )
+script = ExtResource( 3 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 1 )
+autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="queue_free"]

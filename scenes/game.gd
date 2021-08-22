@@ -4,7 +4,6 @@ export(PackedScene) var player_instance
 export(PackedScene) var goo_instance
 
 func _ready():
-	
 	get_tree().connect("network_peer_disconnected", self, "on_player_disconnected")
 	get_tree().connect('network_peer_connected', self, "create_player")
 	get_tree().connect("server_disconnected", self, "on_server_disconnected")
@@ -29,9 +28,7 @@ func on_server_disconnected():
 remote func _request_players(request_from_id):
 	if get_tree().is_network_server():
 		for player in get_tree().get_nodes_in_group("Player"):
-			print("%d %d" % [int(player.name), request_from_id])
 			if int(player.name) != request_from_id:
-				print("sending ")
 				rpc_id(request_from_id, '_send_player', int(player.name))
 				
 remote func _send_player(player_id: int):
@@ -42,4 +39,4 @@ func create_player(player_id: int):
 	var new_player = player_instance.instance()
 	new_player.name = str(player_id)
 	new_player.set_network_master(player_id)
-	$Navigation2D/Walls/Props.add_child(new_player)
+	$YSort/Walls/Props.add_child(new_player)

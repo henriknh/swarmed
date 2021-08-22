@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://entities/siluette.gd" type="Script" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+//render_mode light_only;
+
+void fragment() {
+	float alpha = texture(TEXTURE, UV).a;
+	COLOR.r = 10.0 * alpha;
+	COLOR.a = alpha;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+//render_mode light_only;
+
+// Allows you to control the output color in the Shader Params in the Inspector.
+uniform vec4 silhouette_color : hint_color = vec4(0.12156862745, 0.14117647058
+, 0.29411764705, 1.0);
+
+void fragment() {
+	// We sample the screen texture at this point, which has the Mask node's pixels
+	// rendered on it.
+	vec4 screen_color = texture(SCREEN_TEXTURE, SCREEN_UV);
+	vec4 tex_color = texture(TEXTURE, UV);
+	COLOR = tex_color;
+
+	// If the pixel's value is lower than the Mask's output color, it means the
+	// mask is being occluded, so we draw the silhouette instead.
+	if (screen_color.r < 1.0){
+		COLOR.rgb = silhouette_color.rgb;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/silhouette_color = Color( 0.121569, 0.141176, 0.294118, 1 )
+
+[node name="Siluette" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Mask" type="Sprite" parent="."]
+light_mask = 2
+material = SubResource( 2 )
+
+[node name="Output" type="Sprite" parent="."]
+light_mask = 2
+material = SubResource( 4 )
+z_index = 100
