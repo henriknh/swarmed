@@ -22,15 +22,15 @@ region = Rect2( 176, 80, 16, 16 )
 atlas = ExtResource( 6 )
 region = Rect2( 196, 109, 30, 4 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 6 )
 region = Rect2( 196, 114, 30, 4 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 6 )
 region = Rect2( 229, 108, 4, 6 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 6 )
 region = Rect2( 234, 108, 4, 6 )
 
@@ -339,7 +339,7 @@ __meta__ = {
 [node name="ReloadBarNoQuickReload" type="TextureRect" parent="Reload/VBoxContainer/Control"]
 margin_right = 30.0
 margin_bottom = 4.0
-texture = SubResource( 6 )
+texture = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -353,7 +353,7 @@ margin_bottom = -1.0
 [node name="Normal" type="TextureRect" parent="Reload/VBoxContainer/Control/Control"]
 margin_right = 4.0
 margin_bottom = 6.0
-texture = SubResource( 4 )
+texture = SubResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -361,4 +361,4 @@ __meta__ = {
 [node name="QuickReload" type="TextureRect" parent="Reload/VBoxContainer/Control/Control"]
 margin_right = 4.0
 margin_bottom = 6.0
-texture = SubResource( 5 )
+texture = SubResource( 8 )

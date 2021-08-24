@@ -176,13 +176,6 @@ texture = ExtResource( 7 )
 mode = 2
 script = ExtResource( 1 )
 
-[node name="Light2D_mask" type="Light2D" parent="."]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 7 )
-mode = 3
-range_item_cull_mask = 2
-script = ExtResource( 1 )
-
 [node name="Steps" type="AudioStreamPlayer2D" parent="."]
 visible = false
 stream = ExtResource( 4 )

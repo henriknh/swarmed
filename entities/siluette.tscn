@@ -4,7 +4,7 @@
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
-//render_mode light_only;
+render_mode light_only;
 
 void fragment() {
 	float alpha = texture(TEXTURE, UV).a;
@@ -17,7 +17,7 @@ shader = SubResource( 1 )
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
-//render_mode light_only;
+render_mode light_only;
 
 // Allows you to control the output color in the Shader Params in the Inspector.
 uniform vec4 silhouette_color : hint_color = vec4(0.12156862745, 0.14117647058
@@ -45,10 +45,8 @@ shader_param/silhouette_color = Color( 0.121569, 0.141176, 0.294118, 1 )
 script = ExtResource( 1 )
 
 [node name="Mask" type="Sprite" parent="."]
-light_mask = 2
 material = SubResource( 2 )
 
 [node name="Output" type="Sprite" parent="."]
-light_mask = 2
 material = SubResource( 4 )
 z_index = 100
