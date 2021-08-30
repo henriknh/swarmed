@@ -8,6 +8,8 @@ func _ready():
 	get_tree().connect('network_peer_connected', self, "create_player")
 	get_tree().connect("server_disconnected", self, "on_server_disconnected")
 	
+	Spawner.init()
+	
 	var local_player_id = get_tree().get_network_unique_id()
 	create_player(local_player_id)
 	
@@ -16,8 +18,6 @@ func _ready():
 	
 	$CanvasModulate.visible = true
 	$CanvasLayer.offset = Vector2.ZERO
-	
-	Spawner.init()
 
 func on_player_disconnected(id):
 	get_node(str(id)).queue_free()
@@ -39,4 +39,5 @@ func create_player(player_id: int):
 	var new_player = player_instance.instance()
 	new_player.name = str(player_id)
 	new_player.set_network_master(player_id)
-	$YSort/Walls/Props.add_child(new_player)
+	Spawner.spawn(new_player)
+	Players.player = new_player

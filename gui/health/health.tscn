@@ -1,114 +1,79 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/spritesheets/ui.png" type="Texture" id=1]
 [ext_resource path="res://gui/health/health.gd" type="Script" id=2]
-
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 1 )
-region = Rect2( 112, 112, 6, 6 )
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
-region = Rect2( 119, 112, 1, 6 )
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 1 )
-region = Rect2( 123, 112, 4, 6 )
-
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
-region = Rect2( 121, 112, 1, 6 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 1 )
-region = Rect2( 128, 113, 1, 4 )
+[ext_resource path="res://assets/fonts/font_pixel_small.tres" type="DynamicFont" id=3]
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
-region = Rect2( 112, 107, 1, 4 )
+region = Rect2( 46, 0, 1, 10 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 1 )
-region = Rect2( 114, 107, 1, 4 )
+region = Rect2( 59, 0, 2, 10 )
 
-[node name="Health" type="Control"]
-margin_right = 32.0
-margin_bottom = 6.0
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 61, 0, 2, 10 )
+
+[node name="Health" type="VBoxContainer"]
+margin_top = -10.0
+margin_right = 10.0
+rect_min_size = Vector2( 0, 10 )
+rect_clip_content = true
 size_flags_horizontal = 3
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Container" type="HBoxContainer" parent="."]
-margin_right = 22.0
+[node name="Control" type="Control" parent="."]
+margin_right = 10.0
+size_flags_horizontal = 3
+
+[node name="Background" type="TextureRect" parent="Control"]
+show_behind_parent = true
+anchor_right = 1.0
 margin_bottom = 6.0
+rect_min_size = Vector2( 0, 10 )
+size_flags_horizontal = 3
+texture = SubResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="HBoxContainer" parent="Control"]
+show_behind_parent = true
+anchor_right = 1.0
 size_flags_vertical = 0
 custom_constants/separation = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Left" type="TextureRect" parent="Container"]
-margin_right = 6.0
-margin_bottom = 6.0
-texture = SubResource( 1 )
+[node name="HealthLeft" type="TextureRect" parent="Control/Value"]
+margin_right = 2.0
+margin_bottom = 10.0
+rect_clip_content = true
+texture = SubResource( 6 )
 
-[node name="Center" type="TextureRect" parent="Container"]
-margin_left = 6.0
-margin_right = 18.0
-margin_bottom = 6.0
+[node name="Health" type="TextureRect" parent="Control/Value"]
+margin_left = 2.0
+margin_right = 10.0
+margin_bottom = 10.0
 size_flags_horizontal = 3
-texture = SubResource( 2 )
-expand = true
-stretch_mode = 2
-
-[node name="Right" type="TextureRect" parent="Container"]
-margin_left = 18.0
-margin_right = 22.0
-margin_bottom = 6.0
-texture = SubResource( 3 )
-
-[node name="Separator" type="TextureRect" parent="Container"]
-visible = false
-margin_left = 21.0
-margin_right = 22.0
-margin_bottom = 6.0
-texture = SubResource( 4 )
-
-[node name="Background" type="TextureRect" parent="."]
-show_behind_parent = true
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 21.0
-margin_bottom = 5.0
 texture = SubResource( 7 )
 expand = true
+
+[node name="Label" type="Label" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 10.0
+custom_fonts/font = ExtResource( 3 )
+text = "1"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Value" type="HBoxContainer" parent="."]
-show_behind_parent = true
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 11.0
-margin_bottom = 5.0
-size_flags_vertical = 0
-custom_constants/separation = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Left" type="TextureRect" parent="Value"]
-margin_right = 1.0
-margin_bottom = 4.0
-texture = SubResource( 5 )
-
-[node name="Right" type="TextureRect" parent="Value"]
-margin_left = 1.0
-margin_right = 10.0
-margin_bottom = 4.0
-size_flags_horizontal = 3
-texture = SubResource( 6 )
-expand = true

@@ -1,12 +1,14 @@
 extends Unit
 
-export (int) var speed = 500
-export (int) var max_speed = 40
+class_name Player
+
+export (int) var speed = 1000
+export (int) var max_speed = 100
 
 var velocity = Vector2.ZERO
 
-export (int) var roll_speed = 500
-export (int) var max_rolling_speed = 100
+export (int) var roll_speed = 1200
+export (int) var max_rolling_speed = 140
 export(int) var roll_cost = 2
 var is_rolling = false
 puppet var puppet_is_rolling = is_rolling
@@ -15,8 +17,10 @@ onready var camera: Camera2D = get_node("/root/Game/Camera2D")
 onready var window_size = Vector2(ProjectSettings.get("display/window/size/width"), ProjectSettings.get("display/window/size/height"))
 onready var sprite: Sprite = $Viewport/Sprite
 
+onready var items: Node2D = $Items
+
 puppet var puppet_facing = 0
-	
+
 func _ready():
 	._onready()
 	if is_network_master():
@@ -36,6 +40,7 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("roll") and energy >= roll_cost and not is_rolling and axis != Vector2.ZERO:
 			self.energy -= roll_cost
 			is_rolling = true
+			items.visible = false
 			rset("puppet_is_rolling", is_rolling)
 
 		var relative_mouse_position = get_global_mouse_position() - global_position
@@ -82,6 +87,7 @@ func _physics_process(delta):
 
 func roll_complete():
 	is_rolling = false
+	items.visible = true
 	rset("puppet_is_rolling", is_rolling)
 
 func _on_body_entered(body):

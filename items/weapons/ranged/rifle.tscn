@@ -1,17 +1,15 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://items/weapons/ranged/ranged.gd" type="Script" id=1]
 [ext_resource path="res://assets/spritesheets/weapons.png" type="Texture" id=2]
 [ext_resource path="res://items/weapons/ranged/projectiles/bullet.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/sounds/gun_fire_medium.ogg" type="AudioStream" id=4]
-[ext_resource path="res://assets/spritesheets/ui.png" type="Texture" id=5]
 
 [sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 5 )
-region = Rect2( 176, 135, 8, 8 )
+atlas = ExtResource( 2 )
+region = Rect2( 3, 5, 13, 5 )
 
 [node name="Rifle" type="Node2D"]
-position = Vector2( 1, 1 )
 script = ExtResource( 1 )
 icon = SubResource( 1 )
 cooldown_time = 0.1
@@ -22,7 +20,7 @@ automatic_fire = true
 projectile_spread = 8
 
 [node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 8, 8 )
+size = Vector2( 16, 16 )
 transparent_bg = true
 hdr = false
 disable_3d = true
@@ -31,7 +29,7 @@ render_target_v_flip = true
 render_target_update_mode = 3
 
 [node name="Sprite" type="Sprite" parent="Viewport"]
-position = Vector2( 4, 4 )
+position = Vector2( 8, 8 )
 texture = ExtResource( 2 )
 hframes = 9
 

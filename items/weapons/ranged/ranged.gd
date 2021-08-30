@@ -17,16 +17,10 @@ puppet var puppet_rotation = 0
 puppet var puppet_flip_v = false
 
 signal is_reloading
-onready var reload_timer = Timer.new()
 export(float) var reload_time = 1
 var can_quick_reload = false
-
-func _ready():
-	reload_timer.name = "ReloadTimer"
-	reload_timer.one_shot = true
-	reload_timer.wait_time = reload_time
-	reload_timer.connect("timeout", self, "reload")
-	add_child(reload_timer)
+var quick_reload_lower_bound = 17.0 / 36.0
+var quick_reload_upper_bound = 27.0 / 36.0
 
 func _physics_process(delta):
 	if not visible:
@@ -69,24 +63,28 @@ func _handle_inputs():
 			waiting_for_release = false
 		
 		if Input.is_action_just_pressed("reload"):
-			if reload_timer.is_stopped():
-				reload_timer.start()
+			if cooldown_timer.is_stopped():
+				cooldown_timer.connect("timeout", self, "on_reloaded")
+				set_cooldown(reload_time)
 				emit_signal("is_reloading")
 				can_quick_reload = true
 			elif can_quick_reload:
 				if in_quick_reload_interval():
-					reload()
+					set_cooldown_done()
+					on_reload()
 				else:
-					reload_timer.start()
+					set_cooldown(reload_time)
 					can_quick_reload = false
 
 func shoot():
-	if not weapon_on_cooldown and reload_timer.time_left == 0:
-		
+	if get_parent().get_parent().is_rolling: 
+		return
+	
+	if ready:
 		if bullets > 0:
 			bullets -= bullets_per_shot
-			weapon_on_cooldown = true
-			run_cooldown()
+			emit_signal("item_changed")
+			set_cooldown(cooldown_time)
 			create_bullet($Mussle.global_position, global_rotation)
 		else:
 			var sound_empty_mag: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
@@ -110,12 +108,13 @@ func create_bullet(position: Vector2, rotation: float):
 		projectile.global_rotation = rotation
 		Spawner.rpc("spawn", projectile)
 
-func reload():
-	reload_timer.stop()
+func on_reload():
+	cooldown_timer.disconnect("timeout", self, "on_reloaded")
 	bullets = max_bullets
+	emit_signal("item_changed")
 
 func in_quick_reload_interval() -> bool:
 	if not can_quick_reload:
 		return false
-	var progress = 1 - (reload_timer.time_left / reload_time)
-	return 0.5 < progress and progress < 0.75
+	var progress = 1 - (cooldown_timer.time_left / reload_time)
+	return quick_reload_lower_bound < progress and progress < quick_reload_upper_bound

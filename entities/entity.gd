@@ -7,6 +7,8 @@ onready var anim_player: AnimationNodeStateMachinePlayback = $AnimationTree["par
 puppet var puppet_position = Vector2.ZERO
 puppet var puppet_anim
 
+signal entity_changed
+
 func _ready():
 	puppet_anim = anim_player.get_current_node()
 	

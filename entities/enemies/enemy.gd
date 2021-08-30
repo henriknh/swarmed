@@ -2,7 +2,7 @@ extends Unit
 
 class_name Enemy
 
-export(int) var target_lost_distance = 150
+export(int) var target_lost_distance = 300
 export(int) var speed = 25
 
 onready var anim_tree: AnimationTree = $AnimationTree
@@ -11,8 +11,17 @@ onready var on_target_reset = position
 var target: KinematicBody2D = null
 var velocity = Vector2.ZERO
 
+export(bool) var show_navigation = true
+var line
+
 func _ready():
 	clear_target()
+	
+	if show_navigation:
+		line = Line2D.new()
+		line.z_index = 1000
+		line.width = 2
+		add_child(line)
 
 func _physics_process(delta):
 	if is_instance_valid(target):
@@ -25,6 +34,12 @@ func _physics_process(delta):
 
 func move_to(target_postition: Vector2) -> bool:
 	var path_to_target = nav.get_simple_path(global_position, target_postition)
+	
+	if show_navigation:
+		var line_points = []
+		for point in path_to_target:
+			line_points.append(point - global_position)
+		line.points = line_points
 	
 	if path_to_target.size():
 		
@@ -51,12 +66,15 @@ func clear_target():
 	set_physics_process(false)
 	anim_tree.active = false
 	target = null
+	if line:
+		line.points = []
 
 func on_alert(source: KinematicBody2D):
-	target = source
-	on_target_reset = global_position
-	set_physics_process(true)
-	anim_tree.active = true
+	if not is_dead:
+		target = source
+		on_target_reset = global_position
+		set_physics_process(true)
+		anim_tree.active = true
 	
 func get_distance_to_path(path_to_target: PoolVector2Array):
 	var distance = 0

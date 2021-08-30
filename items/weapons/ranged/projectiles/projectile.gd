@@ -1,6 +1,6 @@
 extends Node2D
 
-export(int) var speed = 200
+export(int) var speed = 250
 
 var projectile_spread = 10
 

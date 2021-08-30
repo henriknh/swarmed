@@ -14,19 +14,15 @@ __meta__ = {
 }
 
 [node name="EmptyBullet2" parent="." instance=ExtResource( 3 )]
-margin_right = 1.0
-margin_bottom = 5.0
 
 [node name="EmptyBullet" parent="." instance=ExtResource( 3 )]
-margin_left = 3.0
-margin_bottom = 5.0
+margin_left = 4.0
+margin_right = 6.0
 
 [node name="Bullet" parent="." instance=ExtResource( 2 )]
-margin_left = 6.0
+margin_left = 8.0
 margin_right = 10.0
-margin_bottom = 5.0
 
 [node name="Bullet2" parent="." instance=ExtResource( 2 )]
 margin_left = 12.0
-margin_right = 16.0
-margin_bottom = 5.0
+margin_right = 14.0

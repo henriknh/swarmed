@@ -4,26 +4,42 @@ class_name Item
 
 export(Texture) var icon
 
-onready var equip_timer = Timer.new()
-export(float) var equip_time = 0.3
+onready var cooldown_timer = Timer.new()
+export(float) var equip_time = 0.5
 var equipped: bool = false setget set_equipped
+var ready: bool = false
+
+signal item_changed
 
 func _ready():
-	equip_timer.one_shot = true
-	equip_timer.wait_time = equip_time
-	equip_timer.connect("timeout", self, "on_equip")
-	add_child(equip_timer)
+	cooldown_timer.one_shot = true
+	cooldown_timer.wait_time = equip_time
+	cooldown_timer.connect("timeout", self, "on_cooldown_timer")
+	add_child(cooldown_timer)
 	
 func set_equipped(_eqipped):
 	if _eqipped:
-		equip_timer.start()
+		set_cooldown(equip_time)
 	else:
 		equipped = false
-		set_physics_process(false)
-		equip_timer.stop()
+		ready = false
+		cooldown_timer.stop()
+		emit_signal("item_changed")
 
-func on_equip():
+func set_cooldown(time: float = equip_time):
+	ready = false
+	if cooldown_timer.is_stopped() or cooldown_timer.time_left < equip_time:
+		cooldown_timer.start(time)
+		
+	emit_signal("item_changed")
+	
+func set_cooldown_done():
+	cooldown_timer.stop()
+	on_cooldown_timer()
+
+func on_cooldown_timer():
 	equipped = true
-	set_physics_process(true)
+	ready = true
+	emit_signal("item_changed")
 
 
